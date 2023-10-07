@@ -5,20 +5,13 @@ namespace StockManager_API.Data
 {
     public class MovementStockContext : DbContext
     {
-        protected readonly IConfiguration _configuration;
 
-
-        public MovementStockContext(IConfiguration configuration)
+        public MovementStockContext(DbContextOptions<MovementStockContext> options) : base(options)
         {
-            _configuration = configuration;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to sql server with connection string from app settings
-            options.UseSqlServer(_configuration.GetConnectionString("StockManagerDatabase"));
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }

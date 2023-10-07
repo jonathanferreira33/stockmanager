@@ -21,7 +21,7 @@ namespace StockManager_API.Services
 
         public Product GetProduct(int id)
         {
-            var product = products.FirstOdDefault(produtc => produtc.Id == id);
+            //var product = products.FirstOdDefault(produtc => produtc.Id == id);
 
             throw new NotImplementedException();
         }
