@@ -11,25 +11,20 @@ namespace StockManager_API.Domains
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public string Functional { get; private set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int Functional { get; private set; }
         public DateTime RegistrationDate { get; set; }
         public RoleEmployee Role { get; set; }
         public SystemProfile Profile { get; set; }
 
+        public Employee() { }
 
         public Employee(string name, RoleEmployee role)
         {
             RegistrationDate = DateTime.Now;
-            Functional = SetFunctional(name);
             Role = role;
             Name = name;
-        }
-
-        private string SetFunctional(string name)
-        {
-            string funcional = "a";
-            Functional = funcional + char.ToUpper(name[0]);
-            return Functional;
         }
     }
 }

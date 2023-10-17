@@ -4,5 +4,6 @@ namespace StockManager_API.Services
 {
     public class EmployeeService : IEmployeeService
     {
+
     }
 }

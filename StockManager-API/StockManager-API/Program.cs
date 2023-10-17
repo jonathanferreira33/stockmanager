@@ -3,15 +3,28 @@ using StockManager_API.Data;
 using StockManager_API.Services;
 using StockManager_API.Services.Interfaces;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MovementStockContext>(
-    options => options
-    .UseSqlServer("Data Source=DESKTOP-3CQKGCT\\SQLEXPRESS;Initial Catalog=DB001_STOCK;Integrated Security=False;User ID=admin;Password=admin123;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False"));
+//builder.Services.AddDbContext<AppDbContext>(
+//    options => options
+//    .UseSqlServer(builder.Configuration
+//    .GetConnectionString("StockManagerDatabaseCS")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+string mySqlConnection = builder.Configuration.GetConnectionString("StockManagerDatabaseCS");
+
+builder.Services.AddDbContextPool<AppDbContext>(options =>
+                options.UseMySql(mySqlConnection,
+                      ServerVersion.AutoDetect(mySqlConnection)));
+
+builder.Services.AddDbContext<AppDbContext>(options => options. UseMySQL(builder.Configuration.GetConnectionString("StockManagerDatabaseCS")));
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

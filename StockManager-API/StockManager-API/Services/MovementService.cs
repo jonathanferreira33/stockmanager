@@ -7,9 +7,9 @@ namespace StockManager_API.Services
     
     public class MovementStockService : IMovementStockService
     {
-        private readonly MovementStockContext _movementStockContext;
+        private readonly AppDbContext _movementStockContext;
 
-        public MovementStockService(MovementStockContext movementStockContext)
+        public MovementStockService(AppDbContext movementStockContext)
         {
             _movementStockContext = movementStockContext;
         }

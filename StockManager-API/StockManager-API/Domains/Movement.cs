@@ -1,17 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StockManager_API.Domains
 {
+    [Table("TB_Movements")]
     public class Movement
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public Employee Responsible { get; set; }
+        public int Responsible { get; set; }
         [Required]
-        public Product Product { get; set;}
+        [ForeignKey("Product")]
+        public virtual ICollection<Product> Products { get; set;}
         [Required]
-        public int Value { get; set; }
+        public int Amount { get; set; }
 
     }
 }

@@ -14,9 +14,14 @@ namespace StockManager_API.Domains
 
         [Required]
         public LogTypes LogType { get; set; }
+        public LogLevels LogLevel { get; set; }
 
-        public Log()
+        public Log() { }
+        
+        public Log(LogTypes logtype, LogLevels logLevel)
         {
+            LogType = logtype;
+            LogLevel = logLevel;
             Date = DateTime.Now;
         }
 
